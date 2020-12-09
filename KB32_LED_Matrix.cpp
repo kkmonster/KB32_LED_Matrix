@@ -36,7 +36,7 @@
  */
 
 #include <Wire.h>
-// #include <Adafruit_GFX.h>
+ // #include <Adafruit_GFX.h>
 #include "KB32_LED_Matrix.h"
 
 #ifndef _BV
@@ -191,6 +191,45 @@ static const uint16_t alphafonttable[] PROGMEM = {
     0b0011111111111111,
 
 };
+
+
+
+void KB32_FT_Matrix::setPixel_color(uint16_t color) {
+
+  Wire.beginTransmission(i2c_addr);
+  Wire.write(0x04);
+  Wire.write(color >> 8);
+  Wire.write(color >> 0);
+  Wire.endTransmission();
+}
+
+void KB32_FT_Matrix::setPixel_color(uint8_t r, uint8_t g, uint8_t b) {
+  uint16_t color = (r & 0xF8) << 8 | (g & 0xFC) << 3 | (b >> 3);
+  Wire.beginTransmission(i2c_addr);
+  Wire.write(0x04);
+  Wire.write(color >> 8);
+  Wire.write(color >> 0);
+  Wire.endTransmission();
+}
+
+void KB32_FT_Matrix::setBlackground_color(uint16_t color) {
+
+  Wire.beginTransmission(i2c_addr);
+  Wire.write(0x03);
+  Wire.write(color >> 8);
+  Wire.write(color >> 0);
+  Wire.endTransmission();
+}
+
+void KB32_FT_Matrix::setBlackground_color(uint8_t r, uint8_t g, uint8_t b) {
+  uint16_t color = (r & 0xF8) << 8 | (g & 0xFC) << 3 | (b >> 3);
+  Wire.beginTransmission(i2c_addr);
+  Wire.write(0x03);
+  Wire.write(color >> 8);
+  Wire.write(color >> 0);
+  Wire.endTransmission();
+}
+
 void KB32_FT_Matrix::setBrightness(uint8_t b) {
   if (b > 15)
     b = 15;

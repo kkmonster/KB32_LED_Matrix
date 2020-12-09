@@ -70,7 +70,11 @@ public:
   */
   void drawPixel(int16_t x, int16_t y, uint16_t color);
 
+  void setPixel_color(uint16_t color);
+  void setPixel_color(uint8_t r, uint8_t g, uint8_t b);
 
+  void setBlackground_color(uint16_t color);
+  void setBlackground_color(uint8_t r, uint8_t g, uint8_t b);
   /*!
     @brief  Start I2C and initialize display state (blink off, full
             brightness).
