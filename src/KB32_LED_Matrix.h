@@ -29,7 +29,7 @@
 #endif
 
 #include <Wire.h>
-#include <Adafruit_GFX.h>
+#include <utility/Adafruit_GFX_Library/Adafruit_GFX.h>
 
 #define LED_ON 1  ///< GFX color of lit LED segments (single-color displays)
 #define LED_OFF 0 ///< GFX color of unlit LED segments (single-color displays)
